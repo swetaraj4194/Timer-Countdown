@@ -3,12 +3,7 @@
 ## Getting started
 To get started follow the following steps. When you are done, push the repository to your new branch and create a PR in GitLab.
 
-1. clone the repo:
-
-git clone https://gitlab.com/vfz-eshop-checkout/vfz-react-boilerplate.git
-
-
-
+1. clone the repo: ```git clone https://gitlab.com/vfz-eshop-checkout/vfz-react-boilerplate.git```
 2. checkout to a new branch
 3. Install React and your dependencies
 4. Make your changes (see assignment).
