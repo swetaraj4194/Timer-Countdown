@@ -1,5 +1,7 @@
 import React from "react";
 import "../components/CountDown.css";
+import { useEffect, useState } from "react";
+
 
 // Can be improved
 const Countdown = () => {
@@ -18,7 +20,20 @@ const Countdown = () => {
 
   const phoneLaunchDateInMs = twentyThreeDaysInMSec + currentTimeInMs;
 
-  console.log("phone launch date", phoneLaunchDateInMs);
+  console.log("phone launch date in ms", phoneLaunchDateInMs);
+
+
+  // Caluclating launching time duration
+
+  const countDown = phoneLaunchDateInMs - new Date().getTime();
+
+  const [timeDuration, setTimeDuration] = useState(countDown);
+
+  console.log("timeDuration", timeDuration);
+
+
+
+
 
   return (
     <div className="vfz-countdown__panel">
@@ -26,18 +41,19 @@ const Countdown = () => {
 
       <div v-show="days > 0" className="vfz-countdown__date">
         <div className="vfz-countdown__date-number">{days}</div>
-        {days === 1 ? (
+        {days === 1 || days === 0 ? (
           <div className="vfz-countdown__date-name">Day</div>
         ) : (
           <div className="vfz-countdown__date-name">Days</div>
         )}
       </div>
 
-      {days > 0 && <div className="vfz-countdown__colon">:</div>}
+      {/* {days > 0 && <div className="vfz-countdown__colon">:</div>} */}
+      <div className="vfz-countdown__colon">:</div>
 
       <div className="vfz-countdown__date">
         <div className="vfz-countdown__date-number">{hours}</div>
-        {hours === 1 ? (
+        {hours === 1 || hours === 0 ? (
           <div className="vfz-countdown-date__name">Hour</div>
         ) : (
           <div className="vfz-countdown__date-name">Hours</div>
