@@ -1,4 +1,53 @@
+
+.container{
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  background-color: black;
+}
+
 .vfz-countdown__panel {
     margin: 1rem;
+    
     font-family: Arial, Helvetica, sans-serif;
+   display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    text-align: center;
+    justify-content: center;
+   
+    
   }
+
+  .vfz-countdown__title{
+    color: white;
+  }
+
+  .vfz-countdown__date-number1{
+    color: red;
+    font-size: 50px;
+  }
+  .vfz-countdown__date-number{
+    color:white;
+    font-size: 50px;
+  }
+  .vfz-countdown__date-number2{
+    color: blue;
+    font-size: 50px;
+  }
+ 
+.vfz-countdown__colon{
+  font-size: 50px;
+  color: white;
+  
+}
+.vfz-countdown__date-name{
+  font-size: large;
+ font-weight: bold;
+ color: white;
+}
+p{
+  font-size: large;
+  color: white;
+
+}

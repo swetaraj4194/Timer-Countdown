@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 // Can be improved
 const Countdown = () => {
-  const countdownTitle = "Countdown";
+  const countdownTitle = "Countdown to Launch!!";
   // const days = 23;
   // const hours = 10;
   // const minutes = 6;
@@ -21,16 +21,16 @@ const Countdown = () => {
 
   console.log("phone launch date in ms", phoneLaunchDateInMs);
 
-
   // Caluclating launching time duration
-   
-  const [timeDuration, setTimeDuration] = useState(phoneLaunchDateInMs - new Date().getTime());
+
+  const [timeDuration, setTimeDuration] = useState(
+    phoneLaunchDateInMs - new Date().getTime()
+  );
 
   console.log("timeDuration", timeDuration);
 
-
   //Triggering countdown
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeDuration(phoneLaunchDateInMs - new Date().getTime());
@@ -38,7 +38,6 @@ const Countdown = () => {
 
     return () => clearInterval(interval);
   }, []);
-
 
   //Calculating time left in the form of(days,hours,minutes and seconds)
 
@@ -57,44 +56,57 @@ const Countdown = () => {
   const seconds = Math.floor((timeDuration % (1000 * 60)) / 1000);
 
   console.log("Seconds left", seconds);
+  
 
   return (
-    <div className="vfz-countdown__panel">
-      <p className="vfz-countdown__title">{countdownTitle}</p>
+    <div className="container">
+      <h1 className="vfz-countdown__title">{countdownTitle}</h1>
 
-      <div v-show="days > 0" className="vfz-countdown__date">
-        <div className="vfz-countdown__date-number">{days}</div>
-        {days === 1 || days === 0 ? (
-          <div className="vfz-countdown__date-name">Day</div>
-        ) : (
-          <div className="vfz-countdown__date-name">Days</div>
-        )}
+      <div className="vfz-countdown__panel">
+        <div v-show="days > 0" className="vfz-countdown__date">
+          <div className="vfz-countdown__date-number1">{days}</div>
+          {days === 1 || days === 0 ? (
+            <div className="vfz-countdown__date-name">Day</div>
+          ) : (
+            <div className="vfz-countdown__date-name">Days</div>
+          )}
+        </div>
+
+        {days > 0 && <div className="vfz-countdown__colon">:</div>}
+        <div className="vfz-countdown__colon">:</div>
+
+        <div className="vfz-countdown__date">
+          <div className="vfz-countdown__date-number">{hours}</div>
+          {hours === 1 || hours === 0 ? (
+            <div className="vfz-countdown-date__name">Hour</div>
+          ) : (
+            <div className="vfz-countdown__date-name">Hours</div>
+          )}
+        </div>
+
+        <div className="vfz-countdown__colon">:</div>
+
+        <div className="vfz-countdown__date">
+          <div className="vfz-countdown__date-number">{minutes}</div>
+          <div className="vfz-countdown__date-name">Min</div>
+        </div>
+
+        <div className="vfz-countdown__colon">:</div>
+
+        <div className="vfz-countdown__date">
+          <div className="vfz-countdown__date-number2">{seconds}</div>
+          <div className="vfz-countdown__date-name">Sec</div>
+        </div>
       </div>
+      <p>Are you ready?</p>
 
-      {/* {days > 0 && <div className="vfz-countdown__colon">:</div>} */}
-      <div className="vfz-countdown__colon">:</div>
-
-      <div className="vfz-countdown__date">
-        <div className="vfz-countdown__date-number">{hours}</div>
-        {hours === 1 || hours === 0 ? (
-          <div className="vfz-countdown-date__name">Hour</div>
-        ) : (
-          <div className="vfz-countdown__date-name">Hours</div>
-        )}
-      </div>
-
-      <div className="vfz-countdown__colon">:</div>
-
-      <div className="vfz-countdown__date">
-        <div className="vfz-countdown__date-number">{minutes}</div>
-        <div className="vfz-countdown__date-name">Min</div>
-      </div>
-
-      <div className="vfz-countdown__colon">:</div>
-
-      <div className="vfz-countdown__date">
-        <div className="vfz-countdown__date-number">{seconds}</div>
-        <div className="vfz-countdown__date-name">Sec</div>
+      <div>
+        <video autoPlay muted loop id="myVideo">
+          <source
+            src="https://media.istockphoto.com/videos/green-screen-rotating-modern-mobile-smart-phone-mockup-with-video-id1292434403"
+            type="video/mp4"
+          />
+        </video>
       </div>
     </div>
   );
