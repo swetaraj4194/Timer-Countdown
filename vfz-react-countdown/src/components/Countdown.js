@@ -2,7 +2,6 @@ import React from "react";
 import "../components/CountDown.css";
 import { useEffect, useState } from "react";
 
-
 // Can be improved
 const Countdown = () => {
   const countdownTitle = "Countdown";
@@ -22,13 +21,23 @@ const Countdown = () => {
 
   console.log("phone launch date in ms", phoneLaunchDateInMs);
 
+
   // Caluclating launching time duration
-
-  const countDown = phoneLaunchDateInMs - new Date().getTime();
-
-  const [timeDuration, setTimeDuration] = useState(countDown);
+   
+  const [timeDuration, setTimeDuration] = useState(phoneLaunchDateInMs - new Date().getTime());
 
   console.log("timeDuration", timeDuration);
+
+
+  //Triggering countdown
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeDuration(phoneLaunchDateInMs - new Date().getTime());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
 
   //Calculating time left in the form of(days,hours,minutes and seconds)
