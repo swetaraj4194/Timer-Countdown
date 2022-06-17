@@ -11,26 +11,21 @@ const Countdown = () => {
   // const seconds = 14;
 
   //Calculating phone launching days in milliseconds, I want to launch phone after 23 days
-
   const twentyThreeDaysInSec = 23 * 24 * 60 * 60;
   const twentyThreeDaysInMSec = twentyThreeDaysInSec * 1000;
-
   const currentTimeInMs = new Date().getTime();
-
   const phoneLaunchDateInMs = twentyThreeDaysInMSec + currentTimeInMs;
+  //console.log("phone launch date in ms", phoneLaunchDateInMs);
 
-  console.log("phone launch date in ms", phoneLaunchDateInMs);
 
   // Caluclating launching time duration
-
   const [timeDuration, setTimeDuration] = useState(
     phoneLaunchDateInMs - new Date().getTime()
   );
+  //console.log("timeDuration", timeDuration);
 
-  console.log("timeDuration", timeDuration);
 
   //Triggering countdown
-
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeDuration(phoneLaunchDateInMs - new Date().getTime());
@@ -39,65 +34,65 @@ const Countdown = () => {
     return () => clearInterval(interval);
   }, []);
 
-  //Calculating time left in the form of(days,hours,minutes and seconds)
-
+  
+  //Calculating how much time left to launching phone in the form of(days,hours,minutes and seconds)
   const days = Math.floor(timeDuration / (1000 * 60 * 60 * 24));
-  console.log("Days left", days);
+  //console.log("Days left", days);
 
   const hours = Math.floor(
     (timeDuration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
-
-  console.log("Hours left", hours);
+  //console.log("Hours left", hours);
 
   const minutes = Math.floor((timeDuration % (1000 * 60 * 60)) / (1000 * 60));
-  console.log("Minutes left", minutes);
+  //console.log("Minutes left", minutes);
 
   const seconds = Math.floor((timeDuration % (1000 * 60)) / 1000);
-
-  console.log("Seconds left", seconds);
-  
+  //console.log("Seconds left", seconds);
 
   return (
     <div className="container">
       <h1 className="vfz-countdown__title">{countdownTitle}</h1>
+      {days + hours + minutes + seconds <= 0 ? (
+        <div className="text">No offer!!</div>
+      ) : (
+        <div className="vfz-countdown__panel">
+          <div v-show="days > 0" className="vfz-countdown__date">
+            <div className="vfz-countdown__date-number1">{days}</div>
+            {days === 1 || days === 0 ? (
+              <div className="vfz-countdown__date-name">Day</div>
+            ) : (
+              <div className="vfz-countdown__date-name">Days</div>
+            )}
+          </div>
 
-      <div className="vfz-countdown__panel">
-        <div v-show="days > 0" className="vfz-countdown__date">
-          <div className="vfz-countdown__date-number1">{days}</div>
-          {days === 1 || days === 0 ? (
-            <div className="vfz-countdown__date-name">Day</div>
-          ) : (
-            <div className="vfz-countdown__date-name">Days</div>
-          )}
+          {days > 0 && <div className="vfz-countdown__colon">:</div>}
+          <div className="vfz-countdown__colon">:</div>
+
+          <div className="vfz-countdown__date">
+            <div className="vfz-countdown__date-number">{hours}</div>
+            {hours === 1 || hours === 0 ? (
+              <div className="vfz-countdown-date__name">Hour</div>
+            ) : (
+              <div className="vfz-countdown__date-name">Hours</div>
+            )}
+          </div>
+
+          <div className="vfz-countdown__colon">:</div>
+
+          <div className="vfz-countdown__date">
+            <div className="vfz-countdown__date-number">{minutes}</div>
+            <div className="vfz-countdown__date-name">Min</div>
+          </div>
+
+          <div className="vfz-countdown__colon">:</div>
+
+          <div className="vfz-countdown__date">
+            <div className="vfz-countdown__date-number2">{seconds}</div>
+            <div className="vfz-countdown__date-name">Sec</div>
+          </div>
         </div>
-
-        {days > 0 && <div className="vfz-countdown__colon">:</div>}
-        <div className="vfz-countdown__colon">:</div>
-
-        <div className="vfz-countdown__date">
-          <div className="vfz-countdown__date-number">{hours}</div>
-          {hours === 1 || hours === 0 ? (
-            <div className="vfz-countdown-date__name">Hour</div>
-          ) : (
-            <div className="vfz-countdown__date-name">Hours</div>
-          )}
-        </div>
-
-        <div className="vfz-countdown__colon">:</div>
-
-        <div className="vfz-countdown__date">
-          <div className="vfz-countdown__date-number">{minutes}</div>
-          <div className="vfz-countdown__date-name">Min</div>
-        </div>
-
-        <div className="vfz-countdown__colon">:</div>
-
-        <div className="vfz-countdown__date">
-          <div className="vfz-countdown__date-number2">{seconds}</div>
-          <div className="vfz-countdown__date-name">Sec</div>
-        </div>
-      </div>
+      )}
       <p>Are you ready?</p>
 
       <div>
