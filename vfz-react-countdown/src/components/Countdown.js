@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 // Can be improved
 const Countdown = () => {
   const countdownTitle = "Countdown";
-  const days = 23;
-  const hours = 10;
-  const minutes = 6;
-  const seconds = 14;
+  // const days = 23;
+  // const hours = 10;
+  // const minutes = 6;
+  // const seconds = 14;
 
   //Calculating phone launching days in milliseconds, I want to launch phone after 23 days
 
@@ -22,7 +22,6 @@ const Countdown = () => {
 
   console.log("phone launch date in ms", phoneLaunchDateInMs);
 
-
   // Caluclating launching time duration
 
   const countDown = phoneLaunchDateInMs - new Date().getTime();
@@ -32,8 +31,23 @@ const Countdown = () => {
   console.log("timeDuration", timeDuration);
 
 
+  //Calculating time left in the form of(days,hours,minutes and seconds)
 
+  const days = Math.floor(timeDuration / (1000 * 60 * 60 * 24));
+  console.log("Days left", days);
 
+  const hours = Math.floor(
+    (timeDuration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+
+  console.log("Hours left", hours);
+
+  const minutes = Math.floor((timeDuration % (1000 * 60 * 60)) / (1000 * 60));
+  console.log("Minutes left", minutes);
+
+  const seconds = Math.floor((timeDuration % (1000 * 60)) / 1000);
+
+  console.log("Seconds left", seconds);
 
   return (
     <div className="vfz-countdown__panel">
