@@ -24,9 +24,6 @@ You can determine any date in the future. Check the boilerplate Countdown.js to 
 
 The basic component is present and it already contains some checks to show/hide specific element. It can use some refactoring and it's up to you what you want to adjust and improve.
 
-## CSS
-
-Completely missing! We use Styled Components (CSS in JS, see: https://styled-components.com/) but feel free to add your own preference.
 
 ## Testing
 
